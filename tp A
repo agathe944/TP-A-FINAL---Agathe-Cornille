@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<stdlib.h> //ajouté a Etape 4
+#include<time.h> //ajouté a Etape 4
+
+int main() {
+    int C=1;
+    while (C != 0){ //Etape 5
+        printf("+-----------------------------------+\n"); //Etape 1
+        printf("|1 : Addition                       |\n");
+        printf("|2 : Soustraction                   |\n");
+        printf("|3 : Multiplication                 |\n");
+        printf("|4 : Tables des multiplications     |\n");
+        printf("|5 : Divisions                      |\n");
+        printf("|0 : Sortir du jeu                  |\n");
+        printf("+-----------------------------------+\n");
+        printf("Quel est votre choix ?\n"); //Etape 2
+        scanf("%d", &C);
+        switch (C) { //Etape 3 modifiée par Etape 6
+            case 1:printf("-> Jeu sélectionné : Addition\n");break;
+            case 2:printf("-> Jeu sélectionné : Soustraction\n");break;
+            case 3:printf("-> Jeu sélectionné : Multiplication\n");break;
+            case 4:printf("-> Jeu sélectionné : Tables des multiplications\n");break;
+            case 5:printf("-> Jeu sélectionné : Divisions\n");break;
+            case 0:printf("-> Jeu sélectionné : Sortir du jeu\n");break;
+            default:printf("Le choix est invalide\n");
+        }
+        int a,b,somme,reponse; //Etape 4
+        if (C==1){
+            srand(time(NULL));
+            int a = rand() %101;
+            int b = rand() %101;
+            somme = a+b;
+            printf("Entrez le résultat de %d+%d :\n",a,b);
+            scanf("%d",&reponse);}
+            if (reponse==somme){
+                printf("Bravo\n");}
+            else {
+                printf("Dommage, la bonne reponse etait %d \n", somme);}
+    }
+    if (C==0){
+        printf("Merci de votre visite\n");}
+    
+}
