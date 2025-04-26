@@ -12,7 +12,7 @@ int main() {
     char nom[50], ligne[200];
     FILE *fichier;
 
-    // Etape 14-15 : Gestion des scores - chargement
+    // Etape 14-15 : Gestion des scores
     printf("Entrez votre nom : ");
     scanf("%s", nom);
 
