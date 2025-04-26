@@ -1,6 +1,3 @@
-// MINI-PROJET : CHAMPION DES MATHS
-// Toutes les étapes numérotées et expliquées pour ton oral
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -47,13 +44,13 @@ int main() {
         printf("| 2 : Soustraction                     |\n");
         printf("| 3 : Multiplication                   |\n");
         printf("| 4 : Tables des multiplications       |\n");
-        printf("| 5 : Divisions (pas encore fait)       |\n");
+        printf("| 5 : Divisions                        |\n");
         printf("| 6 : Complément à 10                  |\n");
         printf("| 7 : Double d'un nombre               |\n");
-        printf("|10 : Moitié d'un nombre pair           |\n");
-        printf("|11 : Suite numérique                  |\n");
-        printf("| 8 : Pair ou impair                   |\n");
-        printf("| 9 : Nombre premier ou non            |\n");
+        printf("| 8 : Moitié d'un nombre pair          |\n");
+        printf("| 9 : Suite numérique                  |\n");
+        printf("| 10 : Pair ou impair                  |\n");
+        printf("| 11 : Nombre premier ou non           |\n");
         printf("| 0 : Sortir du jeu                    |\n");
         printf("+--------------------------------------+\n");
 
@@ -83,7 +80,7 @@ int main() {
             }
         }
 
-        if (C == 2) { // Etape 10 : Soustraction avec résultat positif
+        if (C == 2) { // Etape 10 : Soustraction
             a = rand() % 101;
             b = rand() % 101;
             if (a < b) { d = a; a = b; b = d; } // Permutation pour avoir a >= b
@@ -104,7 +101,7 @@ int main() {
             }
         }
 
-        if (C == 3) { // Etape 9 : Multiplication directement dans main (sans fonction)
+        if (C == 3) { // Etape 9 : Multiplication 
             a = rand() % 10 + 1; // Nombre entre 1 et 10
             b = rand() % 10 + 1; // Nombre entre 1 et 10
             multiplication = a * b;
@@ -149,7 +146,7 @@ int main() {
             }
         }
 
-        if (C == 5) { // Division pas encore disponible
+        if (C == 5) { // Division 
             printf("Désolé, ce jeu n'est pas encore disponible.\n");
         }
 
@@ -190,7 +187,7 @@ int main() {
             }
         }
 
-        if (C == 10) { // Moitié d'un nombre pair
+        if (C == 8) { // Moitié d'un nombre
             a = (rand() % 50) * 2;
             int moitie = a / 2;
             for (essais = 1; essais <= 3; essais++) {
@@ -208,7 +205,7 @@ int main() {
             }
         }
 
-        if (C == 11) { // Suite numérique
+        if (C == 9) { // Suite numérique
             int depart = rand() % 50;
             int pas = (rand() % 5) + 1;
             int suivant = depart + pas;
@@ -223,7 +220,7 @@ int main() {
         }
         // ------------------- ÉTAPE 19 ---------------------
 
-        if (C == 8) { // Pair ou impair
+        if (C == 10) { // Pair ou impair
             a = rand() % 100;
             printf("Le nombre est : %d\n", a);
             printf("Tape 1 pour pair, 2 pour impair : ");
@@ -236,7 +233,7 @@ int main() {
             }
         }
 
-        if (C == 9) { // Nombre premier ou non
+        if (C == 11) { // Nombre premier ou non
             a = rand() % 100;
             int premier = 1;
             if (a < 2) premier = 0;
