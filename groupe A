@@ -1,0 +1,273 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+#include <math.h> // pour vérifier les nombres premiers
+
+// Fonction pour vérifier si un nombre est premier
+int est_premier(int n) {
+    if (n < 2) return 0;
+    for (int i = 2; i <= sqrt(n); i++) {
+        if (n % i == 0) return 0;
+    }
+    return 1;
+}
+
+int main() {
+    int C = 1;
+    int a, b, d, somme, multiplication, soustraction, reponse, compteur = 0;
+    int i, table, j, resultat, r, score_initial = 0;
+    int essais;
+    char nom[50], ligne[200];
+    FILE *fichier;
+
+    // Demander le nom du joueur
+    printf("Entrez votre nom : ");
+    scanf("%s", nom);
+
+    // Charger le score existant
+    fichier = fopen("scores.txt", "r");
+    if (fichier != NULL) {
+        int trouvé = 0;
+        while (fgets(ligne, sizeof(ligne), fichier)) {
+            if (strstr(ligne, nom)) {
+                sscanf(ligne, "Nom : %*s | Score : %d", &score_initial);
+                compteur = score_initial;
+                trouvé = 1;
+                printf("Bienvenue %s, votre dernier score est : %d\n", nom, compteur);
+                break;
+            }
+        }
+        fclose(fichier);
+        if (!trouvé) {
+            printf("Aucun score précédent trouvé pour %s. Nouveau joueur !\n", nom);
+        }
+    } else {
+        printf("Fichier des scores introuvable. Création à la sauvegarde.\n");
+    }
+
+    // Boucle principale du jeu
+    while (C != 0) {
+        printf("+--------------------------------------+\n");
+        printf("| 1 : Addition                         |\n");
+        printf("| 2 : Soustraction                     |\n");
+        printf("| 3 : Multiplication                   |\n");
+        printf("| 4 : Tables des multiplications       |\n");
+        printf("| 5 : Divisions (pas encore fait)       |\n");
+        printf("| 6 : Complément à 10                  |\n");
+        printf("| 7 : Double d'un nombre               |\n");
+        printf("|10 : Moitié d'un nombre pair           |\n");
+        printf("|11 : Suite numérique                  |\n");
+        printf("| 8 : Pair ou impair                   |\n");
+        printf("| 9 : Nombre premier ou non            |\n");
+        printf("| 0 : Sortir du jeu                    |\n");
+        printf("+--------------------------------------+\n");
+
+        printf("Quel est votre choix ? ");
+        scanf("%d", &C);
+
+        srand(time(NULL)); // Initialiser random à chaque tour
+
+        // Jeux principaux
+        if (C == 1) { // Addition
+            a = rand() % 101;
+            b = rand() % 101;
+            somme = a + b;
+            for (essais = 1; essais <= 3; essais++) {
+                printf("Essai %d - Combien fait %d + %d ? ", essais, a, b);
+                scanf("%d", &reponse);
+                if (reponse == somme) {
+                    printf("Bonne réponse !\n");
+                    compteur += 4 - essais;
+                    break;
+                } else if (essais < 3) {
+                    printf("Incorrect, essaye encore.\n");
+                } else {
+                    printf("Raté ! La bonne réponse était : %d\n", somme);
+                }
+            }
+        }
+
+        if (C == 2) { // Soustraction
+            a = rand() % 101;
+            b = rand() % 101;
+            if (a < b) { d = a; a = b; b = d; }
+            soustraction = a - b;
+            for (essais = 1; essais <= 3; essais++) {
+                printf("Essai %d - Combien fait %d - %d ? ", essais, a, b);
+                scanf("%d", &reponse);
+                if (reponse == soustraction) {
+                    printf("Bonne réponse !\n");
+                    compteur += 4 - essais;
+                    break;
+                } else if (essais < 3) {
+                    printf("Incorrect, essaye encore.\n");
+                } else {
+                    printf("Raté ! La bonne réponse était : %d\n", soustraction);
+                }
+            }
+        }
+
+        if (C == 3) { // Multiplication
+            a = rand() % 11;
+            b = rand() % 101;
+            multiplication = a * b;
+            for (essais = 1; essais <= 3; essais++) {
+                printf("Essai %d - Combien fait %d * %d ? ", essais, a, b);
+                scanf("%d", &reponse);
+                if (reponse == multiplication) {
+                    printf("Bonne réponse !\n");
+                    compteur += 4 - essais;
+                    break;
+                } else if (essais < 3) {
+                    printf("Incorrect, essaye encore.\n");
+                } else {
+                    printf("Raté ! La bonne réponse était : %d\n", multiplication);
+                }
+            }
+        }
+
+        if (C == 4) { // Tables de multiplications
+            printf("Sur quelle table voulez-vous travailler (1 à 10) ? ");
+            scanf("%d", &table);
+            for (i = 1; i <= 10; i++) {
+                printf("%d x %d = %d\n", table, i, table * i);
+            }
+            for (j = 1; j <= 10; j++) {
+                resultat = table * j;
+                for (essais = 1; essais <= 3; essais++) {
+                    printf("Essai %d - Combien fait %d x %d ? ", essais, table, j);
+                    scanf("%d", &r);
+                    if (r == resultat) {
+                        printf("Bonne réponse !\n");
+                        compteur += 4 - essais;
+                        break;
+                    } else if (essais < 3) {
+                        printf("Incorrect, essaye encore.\n");
+                    } else {
+                        printf("Raté ! La bonne réponse était : %d\n", resultat);
+                    }
+                }
+            }
+        }
+
+        if (C == 5) { // Divisions (pas encore implémenté)
+            printf("Désolé, ce jeu n'est pas encore disponible.\n");
+        }
+
+        if (C == 6) { // Complément à 10
+            a = rand() % 10;
+            int complement = 10 - a;
+            for (essais = 1; essais <= 3; essais++) {
+                printf("Essai %d - Complément à 10 de %d ? ", essais, a);
+                scanf("%d", &reponse);
+                if (reponse == complement) {
+                    printf("Bonne réponse !\n");
+                    compteur += 4 - essais;
+                    break;
+                } else if (essais < 3) {
+                    printf("Incorrect, essaye encore.\n");
+                } else {
+                    printf("Raté ! La bonne réponse était : %d\n", complement);
+                }
+            }
+        }
+
+        if (C == 7) { // Double d'un nombre
+            a = rand() % 51;
+            int double_val = 2 * a;
+            for (essais = 1; essais <= 3; essais++) {
+                printf("Essai %d - Double de %d ? ", essais, a);
+                scanf("%d", &reponse);
+                if (reponse == double_val) {
+                    printf("Bonne réponse !\n");
+                    compteur += 4 - essais;
+                    break;
+                } else if (essais < 3) {
+                    printf("Incorrect, essaye encore.\n");
+                } else {
+                    printf("Raté ! La bonne réponse était : %d\n", double_val);
+                }
+            }
+        }
+
+        if (C == 10) { // Moitié d'un nombre pair
+            a = (rand() % 50) * 2;
+            int moitie = a / 2;
+            for (essais = 1; essais <= 3; essais++) {
+                printf("Essai %d - Moitié de %d ? ", essais, a);
+                scanf("%d", &reponse);
+                if (reponse == moitie) {
+                    printf("Bonne réponse !\n");
+                    compteur += 4 - essais;
+                    break;
+                } else if (essais < 3) {
+                    printf("Incorrect, essaye encore.\n");
+                } else {
+                    printf("Raté ! La bonne réponse était : %d\n", moitie);
+                }
+            }
+        }
+
+        if (C == 11) { // Suite numérique
+            int depart = rand() % 50;
+            int pas = (rand() % 5) + 1;
+            int suivant = depart + pas;
+            printf("Suite : %d, %d, ... Quel est le prochain nombre ? ", depart, suivant);
+            scanf("%d", &reponse);
+            if (reponse == suivant + pas) {
+                printf("Bonne réponse !\n");
+                compteur += 3;
+            } else {
+                printf("Raté ! La bonne réponse était : %d\n", suivant + pas);
+            }
+        }
+
+        if (C == 8) { // Pair ou impair
+            a = rand() % 100;
+            printf("Le nombre est : %d\n", a);
+            printf("Tape 1 pour pair, 2 pour impair : ");
+            scanf("%d", &reponse);
+            if ((a % 2 == 0 && reponse == 1) || (a % 2 != 0 && reponse == 2)) {
+                printf("Bonne réponse !\n");
+                compteur += 3;
+            } else {
+                printf("Mauvaise réponse !\n");
+            }
+        }
+
+        if (C == 9) { // Nombre premier ou non
+            a = rand() % 100;
+            printf("Le nombre est : %d\n", a);
+            printf("Tape 1 pour premier, 2 pour non premier : ");
+            scanf("%d", &reponse);
+            if ((est_premier(a) && reponse == 1) || (!est_premier(a) && reponse == 2)) {
+                printf("Bonne réponse !\n");
+                compteur += 3;
+            } else {
+                printf("Mauvaise réponse !\n");
+            }
+        }
+
+        printf("Votre score actuel est : %d\n", compteur);
+    }
+
+    // Sauvegarde du score à la fin
+    if (compteur != score_initial) {
+        fichier = fopen("scores.txt", "a");
+        if (fichier != NULL) {
+            time_t t;
+            time(&t);
+            fprintf(fichier, "Nom : %s | Score : %d | Date : %s", nom, compteur, ctime(&t));
+            fclose(fichier);
+            printf("Score mis à jour !\n");
+        } else {
+            printf("Erreur de sauvegarde.\n");
+        }
+    } else {
+        printf("Aucune mise à jour du score.\n");
+    }
+
+    printf("Merci d'avoir joué ! À bientôt !\n");
+    return 0;
+}
