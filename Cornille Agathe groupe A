@@ -161,9 +161,8 @@ int main() {
             }
         }
 
-        // ------------------- ÉTAPE 19 ---------------------
 
-        if (C == 6) { // Pair ou impair
+        if (C == 6) { // Pair ou impair // Etape 19
             a = rand() % 100;
             printf("Le nombre est : %d\n", a);
 
