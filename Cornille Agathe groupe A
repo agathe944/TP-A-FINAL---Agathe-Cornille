@@ -45,12 +45,8 @@ int main() {
         printf("| 3 : Multiplication                   |\n");
         printf("| 4 : Tables des multiplications       |\n");
         printf("| 5 : Divisions                        |\n");
-        printf("| 6 : Complément à 10                  |\n");
-        printf("| 7 : Double d'un nombre               |\n");
-        printf("| 8 : Moitié d'un nombre pair          |\n");
-        printf("| 9 : Suite numérique                  |\n");
-        printf("| 10 : Pair ou impair                  |\n");
-        printf("| 11 : Nombre premier ou non           |\n");
+        printf("| 6 : Pair ou impair                   |\n");
+        printf("| 7 : Nombre premier ou non            |\n");
         printf("| 0 : Sortir du jeu                    |\n");
         printf("+--------------------------------------+\n");
 
@@ -146,94 +142,55 @@ int main() {
             }
         }
 
-        if (C == 5) { // Division 
-            printf("Désolé, ce jeu n'est pas encore disponible.\n");
-        }
-
-        // ------------------- ÉTAPE 18 ---------------------
-        if (C == 6) { // Complément à 10
-            a = rand() % 10;
-            int complement = 10 - a;
+        if (C == 5) { // Etape 18 : Divisions
+            b = (rand() % 10) + 1; // Diviseur entre 1 et 10
+            resultat = (rand() % 10) + 1; // Résultat entre 1 et 10
+            a = b * resultat; // a est un multiple de b
             for (essais = 1; essais <= 3; essais++) {
-                printf("Essai %d - Complément à 10 de %d ? ", essais, a);
+                printf("Essai %d - Combien fait %d / %d ? ", essais, a, b);
                 scanf("%d", &reponse);
-                if (reponse == complement) {
+                if (reponse == resultat) {
                     printf("Bonne réponse !\n");
-                    compteur += 4 - essais;
+                    compteur += 4 - essais; // 3 points si bon au 1er essai, 2 au 2e, 1 au 3e
                     break;
                 } else if (essais < 3) {
-                    printf("Incorrect, essaye encore.\n");
+                    printf("Incorrect, essaye encore...\\n");
                 } else {
-                    printf("Raté ! La bonne réponse était : %d\n", complement);
+                    printf("Raté ! La bonne réponse était : %d\\n", resultat);
                 }
             }
         }
 
-        if (C == 7) { // Double d'un nombre
-            a = rand() % 51;
-            int double_val = 2 * a;
-            for (essais = 1; essais <= 3; essais++) {
-                printf("Essai %d - Double de %d ? ", essais, a);
-                scanf("%d", &reponse);
-                if (reponse == double_val) {
-                    printf("Bonne réponse !\n");
-                    compteur += 4 - essais;
-                    break;
-                } else if (essais < 3) {
-                    printf("Incorrect, essaye encore.\n");
-                } else {
-                    printf("Raté ! La bonne réponse était : %d\n", double_val);
-                }
-            }
-        }
-
-        if (C == 8) { // Moitié d'un nombre
-            a = (rand() % 50) * 2;
-            int moitie = a / 2;
-            for (essais = 1; essais <= 3; essais++) {
-                printf("Essai %d - Moitié de %d ? ", essais, a);
-                scanf("%d", &reponse);
-                if (reponse == moitie) {
-                    printf("Bonne réponse !\n");
-                    compteur += 4 - essais;
-                    break;
-                } else if (essais < 3) {
-                    printf("Incorrect, essaye encore.\n");
-                } else {
-                    printf("Raté ! La bonne réponse était : %d\n", moitie);
-                }
-            }
-        }
-
-        if (C == 9) { // Suite numérique
-            int depart = rand() % 50;
-            int pas = (rand() % 5) + 1;
-            int suivant = depart + pas;
-            printf("Suite : %d, %d, ... Quel est le prochain nombre ? ", depart, suivant);
-            scanf("%d", &reponse);
-            if (reponse == suivant + pas) {
-                printf("Bonne réponse !\n");
-                compteur += 3;
-            } else {
-                printf("Raté ! La bonne réponse était : %d\n", suivant + pas);
-            }
-        }
         // ------------------- ÉTAPE 19 ---------------------
 
-        if (C == 10) { // Pair ou impair
+        if (C == 6) { // Pair ou impair
             a = rand() % 100;
             printf("Le nombre est : %d\n", a);
-            printf("Tape 1 pour pair, 2 pour impair : ");
-            scanf("%d", &reponse);
-            if ((a % 2 == 0 && reponse == 1) || (a % 2 != 0 && reponse == 2)) {
-                printf("Bonne réponse !\n");
-                compteur += 3;
-            } else {
-                printf("Mauvaise réponse !\n");
+
+            for (essais = 1; essais <= 3; essais++) {
+                printf("Essai %d - Tape 1 pour pair, 2 pour impair : ", essais);
+                scanf("%d", &reponse);
+
+                if ((a % 2 == 0 && reponse == 1) || (a % 2 != 0 && reponse == 2)) {
+                    printf("Bonne réponse !\n");
+                    compteur += 4 - essais;
+                    break;
+                } else {
+                    if (essais < 3) {
+                        printf("Mauvaise réponse, essayez encore.\n");
+                    } else {
+                        printf("Mauvaise réponse ! La bonne réponse était : ");
+                        if (a % 2 == 0) {
+                            printf("pair\n");
+                        } else {
+                            printf("impair\n");
+                        }
+                    }
+                }
             }
         }
 
-        if (C == 11) { // Nombre premier ou non
+        if (C == 7) { // Nombre premier ou non
             a = rand() % 100;
             int premier = 1;
             if (a < 2) premier = 0;
@@ -244,13 +201,27 @@ int main() {
                 }
             }
             printf("Le nombre est : %d\n", a);
-            printf("Tape 1 pour premier, 2 pour non premier : ");
-            scanf("%d", &reponse);
-            if ((premier && reponse == 1) || (!premier && reponse == 2)) {
-                printf("Bonne réponse !\n");
-                compteur += 3;
-            } else {
-                printf("Mauvaise réponse !\n");
+
+            for (essais = 1; essais <= 3; essais++) {
+                printf("Essai %d - Tape 1 pour premier, 2 pour non premier : ", essais);
+                scanf("%d", &reponse);
+
+                if ((premier && reponse == 1) || (!premier && reponse == 2)) {
+                    printf("Bonne réponse !\n");
+                    compteur += 4 - essais;
+                    break;
+                } else {
+                    if (essais < 3) {
+                        printf("Mauvaise réponse, essayez encore.\n");
+                    } else {
+                        printf("Mauvaise réponse ! La bonne réponse était : ");
+                        if (premier) {
+                            printf("premier\n");
+                        } else {
+                            printf("non premier\n");
+                        }
+                    }
+                }
             }
         }
 
@@ -272,8 +243,6 @@ int main() {
     } else {
         printf("Aucune mise à jour du score.\n");
     }
-
     printf("Merci d'avoir joué ! À bientôt !\n");
     return 0;
 }
-
