@@ -1,7 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h> // Pour les entrées/sorties
+#include <stdlib.h> // Pour les fonctions utiles comme rand() et malloc()
 #include <time.h>
-#include <string.h>
+#include <string.h> //  // Pour manipuler les chaînes de caractères (strcmp, strstr)
 #include <math.h> // Pour racine carrée dans la vérification des nombres premiers
 
 int main() {
@@ -9,19 +9,19 @@ int main() {
     int a, b, d, somme, multiplication, soustraction, reponse, compteur = 0;
     int i, table, j, resultat, r, score_initial = 0;
     int essais;
-    char nom[50], ligne[200];
-    FILE *fichier;
+    char nom[50], ligne[200]; // nom du joueur, ligne lue du fichier
+    FILE *fichier; // Pointeur de fichier pour gérer les scores
 
     // Etape 14-15 : Gestion des scores
     printf("Entrez votre nom : ");
-    scanf("%s", nom);
+    scanf("%s", nom); // Récupération du nom du joueur
 
-    fichier = fopen("scores.txt", "r");
+    fichier = fopen("scores.txt", "r"); // Ouverture du fichier des scores en lecture
     if (fichier != NULL) {
-        int trouvé = 0;
-        while (fgets(ligne, sizeof(ligne), fichier)) {
-            if (strstr(ligne, nom)) {
-                sscanf(ligne, "Nom : %*s | Score : %d", &score_initial);
+        int trouvé = 0; // Indique si le joueur est déjà présent
+        while (fgets(ligne, sizeof(ligne), fichier)) { // Lecture ligne par ligne 
+            if (strstr(ligne, nom)) { // Si le nom est trouvé dans une ligne
+                sscanf(ligne, "Nom : %*s | Score : %d", &score_initial); // Extraction du score
                 compteur = score_initial;
                 trouvé = 1;
                 printf("Bienvenue %s, votre dernier score est : %d\n", nom, compteur);
@@ -66,7 +66,7 @@ int main() {
                 scanf("%d", &reponse);
                 if (reponse == somme) {
                     printf("Bonne réponse !\n");
-                    compteur += 4 - essais;
+                    compteur += 4 - essais; // Initialisation du générateur aléatoire
                     break;
                 } else if (essais < 3) {
                     printf("Incorrect, essaye encore.\n");
@@ -79,7 +79,7 @@ int main() {
         if (C == 2) { // Etape 10 : Soustraction
             a = rand() % 101;
             b = rand() % 101;
-            if (a < b) { d = a; a = b; b = d; } // Permutation pour avoir a >= b
+            if (a < b) { d = a; a = b; b = d; } // Permutation pour éviter les résultats négatifs
             soustraction = a - b;
 
             for (essais = 1; essais <= 3; essais++) {
@@ -229,10 +229,10 @@ int main() {
 
     // Etape 16 : Sauvegarde du score à la fin
     if (compteur != score_initial) {
-        fichier = fopen("scores.txt", "a");
+        fichier = fopen("scores.txt", "a"); // Ouverture en mode ajout 
         if (fichier != NULL) {
             time_t t;
-            time(&t);
+            time(&t); // Récupere l'heure actuelle 
             fprintf(fichier, "Nom : %s | Score : %d | Date : %s", nom, compteur, ctime(&t));
             fclose(fichier);
             printf("Score mis à jour !\n");
