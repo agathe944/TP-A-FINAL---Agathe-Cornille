@@ -1,1 +1,59 @@
+Ce projet est un petit jeu console écrit en C, permettant aux utilisateurs de s'entraîner à différentes opérations mathématiques 
+tout en gagnant des points et en sauvegardant leur progression.
 
+- Étapes 1 à 2 : Affichage du menu principal
+Un menu est affiché à chaque tour pour permettre à l'utilisateur de choisir un type d'exercice :
+1 : Addition
+2 : Soustraction
+3 : Multiplication
+4 : Tables des multiplications
+5 : Divisions
+6 : Pair ou impair
+7 : Nombre premier ou non
+0 : Sortir du jeu
+
+- Étapes 14-15 : Saisie du nom et récupération du score
+L'utilisateur entre son nom.
+Le programme cherche dans le fichier scores.txt un score associé.
+Si un score est trouvé, il est affiché comme score de départ.
+Sinon, un message indique que l'utilisateur est nouveau.
+
+- Étape 4 : Addition
+Deux nombres aléatoires entre 0 et 100 sont générés.
+L'utilisateur a 3 essais pour répondre correctement à l’addition.
+Le score dépend du nombre d’essais utilisés.
+
+- Étape 10 : Soustraction
+Deux nombres aléatoires entre 0 et 100 sont générés.
+Le programme s’assure que la soustraction ne donne pas de résultat négatif.
+L’utilisateur a 3 essais pour trouver le bon résultat.
+
+- Étape 9 : Multiplication
+Deux nombres aléatoires entre 1 et 10 sont générés.
+L'utilisateur a 3 tentatives pour donner le bon produit.
+
+- Étapes 12-13 : Table de multiplication
+L'utilisateur choisit une table (de 1 à 10).
+La table est affichée.
+Ensuite, pour chaque ligne de la table, une question est posée.
+Chaque bonne réponse (en 1 à 3 essais) rapporte des points.
+
+- Étape 18 : Division (entière)
+Le programme génère un diviseur et un quotient.
+Le dividende est calculé pour garantir une division sans reste.
+L’utilisateur doit trouver le résultat exact.
+
+- Étape 19 : Pair ou impair
+Un nombre aléatoire entre 0 et 99 est proposé.
+L’utilisateur doit répondre s’il est pair ou impair (1 pour pair, 2 pour impair).
+Trois essais possibles.
+- Nombre premier ou non
+Un nombre aléatoire entre 0 et 99 est généré.
+Le programme vérifie s’il est premier (en testant les diviseurs jusqu'à √n).
+L'utilisateur indique s’il est premier (1) ou non (2), avec trois essais.
+
+Étape 16 : Sauvegarde des scores
+À la fin du jeu (lorsque l’utilisateur choisit 0), si le score a augmenté, il est ajouté à scores.txt avec la date.
+Sinon, un message indique qu’aucune mise à jour n’est faite.
+
+FIN
