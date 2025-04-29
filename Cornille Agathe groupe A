@@ -1,5 +1,5 @@
 #include <stdio.h> // Pour les entrées/sorties
-#include <stdlib.h> // Pour les fonctions utiles comme rand() et malloc()
+#include <stdlib.h> // Pour les fonctions utiles comme rand()
 #include <time.h>
 #include <string.h> //  // Pour manipuler les chaînes de caractères (strcmp, strstr)
 #include <math.h> // Pour racine carrée dans la vérification des nombres premiers
