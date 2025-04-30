@@ -59,6 +59,8 @@ int main() {
             case 3:printf("-> Jeu sélectionné : Multiplication\n");break;
             case 4:printf("-> Jeu sélectionné : Tables des multiplications\n");break;
             case 5:printf("-> Jeu sélectionné : Divisions\n");break;
+            case 6:printf("-> Jeu sélectionné : Pair ou impair\n");break;
+            case 7:printf("-> Jeu sélectionné : Nombre premier ou non\n");break;
             case 0:printf("-> Jeu sélectionné : Sortir du jeu\n");break;
             default:printf("Le choix est invalide\n");
         }
