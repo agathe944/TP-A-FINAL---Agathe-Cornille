@@ -145,7 +145,7 @@ int main() {
         if (C == 5) { // Etape 18 : Divisions
             b = (rand() % 10) + 1; // Diviseur entre 1 et 10
             resultat = (rand() % 10) + 1; // Résultat entre 1 et 10
-            a = b * resultat; // a est un multiple de b
+            a = b * resultat; // on s'assure que a est un multiple de b pour qu'il n'y ai pas de reste
             for (essais = 1; essais <= 3; essais++) {
                 printf("Essai %d - Combien fait %d / %d ? ", essais, a, b);
                 scanf("%d", &reponse);
