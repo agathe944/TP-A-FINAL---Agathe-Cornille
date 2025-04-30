@@ -53,6 +53,15 @@ int main() {
         // Etape 2 : Demander le choix du joueur
         printf("Quel est votre choix ? ");
         scanf("%d", &C);
+        switch (C) { //Etape 3 modifiée par Etape 6
+            case 1:printf("-> Jeu sélectionné : Addition\n");break;
+            case 2:printf("-> Jeu sélectionné : Soustraction\n");break;
+            case 3:printf("-> Jeu sélectionné : Multiplication\n");break;
+            case 4:printf("-> Jeu sélectionné : Tables des multiplications\n");break;
+            case 5:printf("-> Jeu sélectionné : Divisions\n");break;
+            case 0:printf("-> Jeu sélectionné : Sortir du jeu\n");break;
+            default:printf("Le choix est invalide\n");
+        }
 
         srand(time(NULL)); // Initialiser la génération aléatoire
 
